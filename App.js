@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { PaperProvider } from "react-native-paper";
+
 import AppNavigator from "./src/navigation/AppNavigator";
 import SplashScreen from "./src/screens/SplashScreen";
 
@@ -13,9 +15,9 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (isSplashVisible) {
-    return <SplashScreen />;
-  }
-
-  return <AppNavigator />;
+  return (
+    <PaperProvider>
+      {isSplashVisible ? <SplashScreen /> : <AppNavigator />}
+    </PaperProvider>
+  );
 }
